@@ -1,0 +1,78 @@
+{
+  "noteplan.minAppVersion": "3.4.0",
+  "macOS.minVersion": "10.13.0",
+  "plugin.id": "ariccb.SupernoteSyncUnofficial",
+  "plugin.name": "Supernote Sync Unofficial",
+  "plugin.description": "Fetch and sync tasks from Supernote to NotePlan",
+  "plugin.author": "ariccb",
+  "plugin.url": "https://github.com/NotePlan/plugins/blob/main/ariccb.SupernoteSyncUnofficial/README.md",
+  "plugin.version": "0.1.0",
+  "plugin.changelog": "https://github.com/NotePlan/plugins/blob/main/ariccb.SupernoteSyncUnofficial/CHANGELOG.md",
+  "plugin.dependencies": [],
+  "plugin.script": "script.js",
+  "plugin.commands": [
+    {
+      "name": "Fetch all synced lines codes in NotePlan Notes",
+      "description": "Prints all of the currently used codes for synced lines in NotePlan, to make sure manually created synced lines are not conflicting.",
+      "jsFunction": "fetchAllSyncedLineCodes",
+      "alias": ["fasl"],
+      "hidden": true
+    },
+    {
+      "name": "Supernote to Noteplan Sync",
+      "description": "Process all of the Supernote .note files in your Supernote's Note directory and place recognized text and converted images to the appropriate NotePlan notes.",
+      "jsFunction": "insertDate",
+      "alias": ["s2n", "sns"],
+      "hidden": false
+    },
+    {
+      "name": "Supernote Tasks Sync",
+      "description": "Process all of the Supernote's Tasks and place them in today's NotePlan note, with a generated synced line code.",
+      "jsFunction": "insertDate",
+      "alias": ["sts"],
+      "hidden": false
+    }
+  ],
+  "plugin.settings": [
+    {
+      "type": "string",
+      "key": "supernote_tool_image_conversion_type",
+      "title": "Image format to use: either 'png' or 'pdf'",
+      "description": "The image files that get created from converting the .note files get embedded in the NotePlan notes. This setting determines the format of the image files.",
+      "default": "png",
+      "required": true
+    },
+    {
+      "type": "string",
+      "key": "notes_application_inbox_path",
+      "title": "Inbox Path",
+      "description": "Path to the inbox directory in the notes application that will be used to place notes that were in the parent folder of the Supernote notes.",
+      "default": "/Users/acbouwers/Library/Containers/co.noteplan.NotePlan3/Data/Library/Application Support/co.noteplan.NotePlan3/Notes/00 - Inbox",
+      "required": true
+    },
+    {
+      "type": "string",
+      "key": "notes_application_file_ext",
+      "title": "File Extension",
+      "description": "File extension used for notes in the application.",
+      "default": ".md",
+      "required": true
+    },
+    {
+      "type": "string",
+      "key": "notes_application_storage_path",
+      "title": "Storage Path",
+      "description": "Path to the storage directory in the notes application.",
+      "default": "/Users/acbouwers/Library/Containers/co.noteplan.NotePlan3/Data/Library/Application Support/co.noteplan.NotePlan3/Notes",
+      "required": true
+    },
+    {
+      "type": "string",
+      "key": "supernote_parent_storage_path",
+      "title": "Supernote Parent Storage Path",
+      "description": "Path to the parent storage directory in the Supernote application.",
+      "default": "/Users/acbouwers/Library/Containers/5E209006-499F-43DC-BD7C-EC697B9B4D64/Data/Library/Application Support/com.ratta.supernote/677531935891181568",
+      "required": true
+    }
+  ]
+}
